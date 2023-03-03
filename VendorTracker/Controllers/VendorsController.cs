@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace VendorTracker.Controllers
 { 
 
-    public class VendorController : Controller
+    public class VendorsController : Controller
     { 
-      [HttpGet("/vendor")]
+      [HttpGet("/vendors")]
       public ActionResult Index()
       {     
         return View();

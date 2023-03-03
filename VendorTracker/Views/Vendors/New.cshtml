@@ -2,5 +2,13 @@
   Layout = "_Layout";
 }
 
-<div class="message" id="vendors-message">Create vendor</div>
-<form>form etc.</form>
+<div class="message" id="vendors-message">Add vendor</div>
+<form method="post" action="/vendors">
+  <div class="form-input-area"><label for="vendorName">Vendor name:</label><input type="text" name="vendorName"></div>
+  <div class="form-input-area"><label for="vendorDescription">Vendor description:</label><textarea name="vendorDescription"></textarea></div>
+  <div class="form-input-area"><label for="vendorBreadPerMonth">Bread per month:</label><input type="number" name="vendorBreadPerMonth"></div>
+  <div class="form-input-area"><label for="vendorPastriesPerMonth">Pastries per month:</label><input type="number" name="vendorPastriesPerMonth"></div>
+  <div class="button-area">
+    <button type="submit">Add</button>
+  </div>  
+</form>

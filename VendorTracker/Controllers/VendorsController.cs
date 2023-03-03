@@ -20,5 +20,17 @@ namespace VendorTracker.Controllers
         return View();
       
       }
+
+      [HttpPost("/vendors")]
+      public ActionResult Create(
+        string vendorName,
+        string vendorDescription,
+        string vendorBreadPerMonth,
+        string vendorPastriesPerMonth
+      )
+      {
+        
+        return RedirectToAction("Index");
+      }
     }
 }

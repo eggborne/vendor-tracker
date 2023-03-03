@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using VendorTracker.Models;
+using System;
 using System.Collections.Generic;
 
 namespace VendorTracker.Controllers
@@ -10,7 +11,8 @@ namespace VendorTracker.Controllers
       [HttpGet("/vendors")]
       public ActionResult Index()
       {     
-        return View();
+        List<Vendor> allVendors = Vendor.GetAll();
+        return View(allVendors);
       
       }
 
@@ -29,7 +31,7 @@ namespace VendorTracker.Controllers
         string vendorPastriesPerMonth
       )
       {
-        
+        Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorBreadPerMonth, vendorPastriesPerMonth);
         return RedirectToAction("Index");
       }
     }

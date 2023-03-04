@@ -26,15 +26,23 @@ namespace VendorTracker.Controllers
         string vendorName,
         string vendorDescription,
         string vendorPhone,
-        string vendorEmail
+        string vendorEmail,
+        int vendorBreadRate,
+        int vendorPastryRate
       )
       {
         if (vendorName == null) { vendorName = "Vandelay Industries"; }
         if (vendorDescription == null) { vendorDescription = "Import/Exporter, buys a lot in the springtime"; }
         if (vendorPhone == null) { vendorPhone = "5038675309"; }
         if (vendorEmail == null) { vendorEmail = "art@vandelay.dev"; }
-        
-        Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorPhone, vendorEmail);
+        if (vendorBreadRate == 0) { vendorBreadRate = 3; }
+        if (vendorPastryRate == 0) { vendorPastryRate = 2; }
+
+        Dictionary<string, int> vendorRates = new Dictionary<string, int>();
+        vendorRates["bread"] = vendorBreadRate;
+        vendorRates["pastry"] = vendorPastryRate;
+
+        Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorPhone, vendorEmail, vendorRates);
         return RedirectToAction("Index");
       }
     }

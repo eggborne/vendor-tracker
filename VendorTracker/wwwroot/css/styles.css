@@ -47,7 +47,7 @@ form {
 }
 
 form#new-order-form {
-  grid-template-rows: 1fr 1fr 1fr 6rem;
+  grid-template-rows: 1fr 1fr 6rem;
 }
 
 form#new-order-form > input:last-of-type {

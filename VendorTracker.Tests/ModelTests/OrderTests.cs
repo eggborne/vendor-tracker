@@ -8,8 +8,8 @@ namespace VendorTracker.Tests
   [TestClass]
   public class OrderTests : IDisposable
   {
-    Order testOrder1 = new Order("3/03/2023", "12", "6", "48");
-    Order testOrder2 = new Order("3/03/2023", "12", "6", "48");
+    Order testOrder1 = new Order("3/03/2023", "12", "6", 48);
+    Order testOrder2 = new Order("3/03/2023", "6", "5", 28);
 
     public void Dispose()
     {
@@ -43,7 +43,7 @@ namespace VendorTracker.Tests
     [TestMethod]
     public void OrderConstructor_CreatesOrderWithTotalPrice_Order()
     {
-      Assert.AreEqual("48", testOrder1.TotalPrice);
+      Assert.AreEqual(48, testOrder1.TotalPrice);
     }
 
     [TestMethod]
@@ -67,9 +67,9 @@ namespace VendorTracker.Tests
       int orderListLengthBefore = Order.GetAll().Count;
       Order.ClearAll();
       int orderListLengthAfter = Order.GetAll().Count;
-      bool nowEmpty = orderListLengthBefore == 2 && orderListLengthAfter == 0;
+      bool wasEmptied = orderListLengthBefore == 2 && orderListLengthAfter == 0;
 
-      Assert.AreEqual(true, nowEmpty);
+      Assert.AreEqual(true, wasEmptied);
     }
 
     [TestMethod]

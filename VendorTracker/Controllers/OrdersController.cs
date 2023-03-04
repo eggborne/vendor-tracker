@@ -25,11 +25,16 @@ namespace VendorTracker.Controllers
       public ActionResult Create(
         int vendorId,
         string breadAmount,
-        string pastryAmount,
-        string totalPrice
+        string pastryAmount
       )
       {
+        if (breadAmount == null) { breadAmount = "12"; }
+        if (pastryAmount == null) { pastryAmount = "6"; }
         Vendor chosenVendor = Vendor.Find(vendorId);
+        Dictionary<string, int> productAmounts = new Dictionary<string, int>();
+        productAmounts["bread"] = int.Parse(breadAmount);
+        productAmounts["pastry"] = int.Parse(pastryAmount);
+        int totalPrice = chosenVendor.getTotal(productAmounts);
         Order newOrder = new Order("3/03/2023", breadAmount, pastryAmount, totalPrice);
         chosenVendor.AddOrder(newOrder);
         return View("Index", chosenVendor);

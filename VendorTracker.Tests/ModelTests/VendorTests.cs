@@ -8,11 +8,17 @@ namespace VendorTracker.Tests
   [TestClass]
   public class VendorTests : IDisposable
   {
-    Vendor testVendor1 = new Vendor("Rabo Karabekian","Rabo's description", "5035551212", "rabo@rabo.net");
-    Vendor testVendor2 = new Vendor("Frank's Doughnuts","Frank's description", "5035552323", "frank@dough.nuts");
 
-    Order testOrder1 = new Order("3/03/2023", "12", "6", "48");
-    Order testOrder2 = new Order("3/03/2023", "4", "1", "14");
+    static Dictionary<string, int> testRates = new Dictionary<string, int>
+    {
+        { "bread", 3 }, 
+        { "pastry", 2 }
+    };
+    Vendor testVendor1 = new Vendor("Rabo Karabekian","Rabo's description", "5035551212", "rabo@rabo.net", testRates);
+    Vendor testVendor2 = new Vendor("Frank's Doughnuts","Frank's description", "5035552323", "frank@dough.nuts", testRates);
+
+    Order testOrder1 = new Order("3/03/2023", "12", "6", 48);
+    Order testOrder2 = new Order("3/03/2023", "4", "1", 14);
 
     public void Dispose()
     {
@@ -47,6 +53,13 @@ namespace VendorTracker.Tests
     public void VendorConstructor_CreatesVendorWithEmail_Vendor()
     {
       Assert.AreEqual("rabo@rabo.net", testVendor1.Email);
+    }
+
+    [TestMethod]
+    public void VendorConstructor_CreatesVendorWithRates_Vendor()
+    {
+      Assert.AreEqual(3, testVendor1.Rates["bread"]);
+      Assert.AreEqual(2, testVendor1.Rates["pastry"]);
     }
 
     [TestMethod]

@@ -8,10 +8,10 @@ namespace VendorTracker.Models
     public string Date { get; set; }
     public string BreadAmount {get; set;}
     public string PastryAmount { get; set; }
-    public string TotalPrice { get; set; }
+    public int TotalPrice { get; set; }
     public int Id { get; }
     private static List<Order> _instances = new List<Order> { };
-    public Order(string date, string breadAmount, string pastryAmount, string totalPrice)
+    public Order(string date, string breadAmount, string pastryAmount, int totalPrice)
     {
       Date = date;
       BreadAmount = breadAmount;

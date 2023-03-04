@@ -9,16 +9,18 @@ namespace VendorTracker.Models
     public string Description { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
+    public Dictionary<string, int> Rates { get; set; }
     public int Id { get; }
     public List<Order> Orders = new List<Order> { };
     private static List<Vendor> _instances = new List<Vendor> { };
 
-    public Vendor(string name, string description, string phone, string email)
+    public Vendor(string name, string description, string phone, string email, Dictionary<string, int> rates)
     {
       Name = name;
       Description = description;
       Phone = phone;
       Email = email;
+      Rates = rates;
       _instances.Add(this);
       Id = _instances.Count;
     }
@@ -26,6 +28,13 @@ namespace VendorTracker.Models
     public void AddOrder(Order order)
     {
       Orders.Add(order);
+    }
+
+    public int getTotal(Dictionary<string, int> productAmounts) {
+      int total = 0;
+      total += productAmounts["bread"] * this.Rates["bread"];
+      total +=productAmounts["pastry"] * this.Rates["pastry"];
+      return total;
     }
 
     public static List<Vendor> GetAll()

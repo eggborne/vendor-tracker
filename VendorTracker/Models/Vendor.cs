@@ -10,7 +10,7 @@ namespace VendorTracker.Models
     public string Phone { get; set; }
     public string Email { get; set; }
     public int Id { get; }
-    private static List<Order> _orders = new List<Order> { };
+    public List<Order> Orders = new List<Order> { };
     private static List<Vendor> _instances = new List<Vendor> { };
 
     public Vendor(string name, string description, string phone, string email)
@@ -21,6 +21,11 @@ namespace VendorTracker.Models
       Email = email;
       _instances.Add(this);
       Id = _instances.Count;
+    }
+
+    public void AddOrder(Order order)
+    {
+      Orders.Add(order);
     }
 
     public static List<Vendor> GetAll()

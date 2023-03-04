@@ -1,6 +1,7 @@
 @{
   Layout = "_Layout";
 }
+
 @using VendorTracker.Models
 
 <div class="message" id="vendors-message">Current Vendors:</div>
@@ -25,13 +26,13 @@
         <div class="vendor-email">
           Email: @vendor.Email
         </div>
-        <a href="./vendors/@vendor.Id/orders">
+        <a href="/vendors/@vendor.Id/orders">
           <button class="view-orders-button">View / Add Orders</button>
         </a>
       </li>
     }
   </ul>
 
-<a href="./vendors/new">
+<a href="/vendors/new">
   <button>Add New Vendor</button>
 </a>

@@ -9,16 +9,16 @@ namespace VendorTracker.Models
     public string BreadAmount {get; set;}
     public string PastryAmount { get; set; }
     public string TotalPrice { get; set; }
+    private int VendorId { get; set; }
     public int Id { get; }
     private static List<Order> _instances = new List<Order> { };
-    public Order(string date, string breadAmount, string pastryAmount)
+    public Order(string date, string breadAmount, string pastryAmount, string totalPrice, int VendorId)
     {
       Date = date;
       BreadAmount = breadAmount;
       PastryAmount = pastryAmount;
-
+      VendorId = VendorId;
       TotalPrice = "12";
-
       _instances.Add(this);
       Id = _instances.Count;
     }

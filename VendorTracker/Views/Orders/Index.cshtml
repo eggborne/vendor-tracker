@@ -4,30 +4,31 @@
 
 @using VendorTracker.Models
 
-<div class="message" id="vendors-message">Orders:</div>
- @if (Model != null && Model.Count > 0)
+<div class="message" id="vendors-message">Orders for @Model.Name:</div>
+ @if (Model.Orders.Count == 0)
   {
+    <p>No orders!</p>
+  }
   <ul id="order-list">
-    List of orders...
-    @* @foreach (Order order in Model)
+    @foreach (Order order in Model.Orders)
     {
       <li class="order-card">
+        <div class="order-date">
+          Order Date: @order.Date
+        </div>
         <div class="bread-amount">
-          @order.breadAmount
+          Bread units: @order.BreadAmount
         </div>
         <div class="pastry-amount">
-          @order.breadAmount
+          Pastry units: @order.PastryAmount
         </div>
         <div class="total-price">
-          @order.totalPrice
+          Total price: @order.TotalPrice
         </div>
         
       </li>
-    } *@
+    }
   </ul>
-  } else {
-    <p>No orders!</p>
-  }
 
-  @* <a href='/vendors/@order.Id/new'><button>Add Another Order</button></a>
-  <a href='/vendors/@order.Id'><button>View All Orders</button></a> *@
+  <a href='/vendors/@Model.Id/orders/new'><button>Add New Order</button></a>
+  <a href='/vendors'><button>Back to Vendor List</button></a>

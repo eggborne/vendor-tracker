@@ -25,7 +25,8 @@ body, form .form-area-input, form textarea {
 
 button {
   font-size: inherit;
-  padding: 1rem;
+  width: 12rem;
+  padding: 1rem 0;
   margin: 1rem;
   border-radius: 0.5rem;
 }
@@ -39,11 +40,18 @@ main h1 {
 }
 
 form {
-  margin: 2rem;
+  margin: 1rem;
   display: grid;
-  grid-template-rows: 1fr 8rem 1fr 1fr 6rem;
+  grid-template-rows: 1fr 1fr 1fr 1fr 6rem;
   grid-template-columns: 70%;
-  /* align-content: */
+}
+
+form#new-order-form {
+  grid-template-rows: 1fr 1fr 1fr 6rem;
+}
+
+form#new-order-form > input:last-of-type {
+  display: none;
 }
 
 .form-input-area {
@@ -66,11 +74,11 @@ form textarea {
   width: 90%;
 }
 
-/* .form-input-area input[type="number"] {
+.form-input-area input[type="number"] {
   width: 5rem;
   height: 4rem;
   font-size: 2rem;
-} */
+}
 
 form > .button-area {
   display: flex;
@@ -110,7 +118,7 @@ main {
 }
 
 .vendor-card {
-  width: 20rem;
+  width: 16rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;

@@ -2,13 +2,14 @@
   Layout = "_Layout";
 }
 
-<div class="message" id="vendors-message">Add vendor</div>
-<form method="post" action="/vendors">
-  <div class="form-input-area"><label for="vendorName">Vendor name:</label><input type="text" name="vendorName"></div>
-  <div class="form-input-area"><label for="vendorDescription">Vendor description:</label><textarea name="vendorDescription"></textarea></div>
-  <div class="form-input-area"><label for="vendorPhone">Phone:</label><input type="tel" name="vendorPhone"></div>
-  <div class="form-input-area"><label for="vendorEmail">Email:</label><input type="text" name="vendorEmail"></div>
+<div class="message" id="vendors-message">Add order for @Model.Name</div>
+<form action="/vendors/@Model.Id/orders" method="post" id="new-order-form">
+  <div class="form-input-area"><label for="breadAmount">Bread units:</label><input type="number" name="breadAmount"></div>
+  <div class="form-input-area"><label for="pastryAmount">Pastry units:</label><input type="number" name="pastryAmount"></div>
+  <div class="form-input-area"><label for="totalPrice">Total Price:</label><input type="text" name="totalPrice"></div>
+  <input type="text" name="vendorId" value="@Model.Id">
   <div class="button-area">
-    <button type="submit">Add</button>
+    <button type="submit">Add Order</button>
   </div>  
 </form>
+<a href='/vendors/@Model.Id/orders'><button>Go Back</button></a>

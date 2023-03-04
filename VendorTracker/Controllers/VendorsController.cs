@@ -13,14 +13,12 @@ namespace VendorTracker.Controllers
       {     
         List<Vendor> allVendors = Vendor.GetAll();
         return View(allVendors);
-      
       }
 
       [HttpGet("/vendors/new")]
       public ActionResult New()
       {     
         return View();
-      
       }
 
       [HttpPost("/vendors")]
@@ -31,16 +29,14 @@ namespace VendorTracker.Controllers
         string vendorEmail
       )
       {
+        if (vendorName == null) { vendorName = "Vandelay Industries"; }
+        if (vendorDescription == null) { vendorDescription = "Import/Exporter, buys a lot in the springtime"; }
+        if (vendorPhone == null) { vendorPhone = "5038675309"; }
+        if (vendorEmail == null) { vendorEmail = "art@vandelay.dev"; }
+        
         Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorPhone, vendorEmail);
         return RedirectToAction("Index");
       }
-
-      // [HttpGet("/vendors/{id}/orders")]
-      // public ActionResult Show(int id)
-      // {
-      //   Vendor chosenVendor = Vendor.Find(id);
-      //   return View(chosenVendor);
-      // }
     }
 
 }

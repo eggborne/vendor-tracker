@@ -34,7 +34,7 @@ namespace VendorTracker.Controllers
         Dictionary<string, int> productAmounts = new Dictionary<string, int>();
         productAmounts["bread"] = int.Parse(breadAmount);
         productAmounts["pastry"] = int.Parse(pastryAmount);
-        int totalPrice = chosenVendor.getTotal(productAmounts);
+        int totalPrice = chosenVendor.GetTotal(productAmounts);
         Order newOrder = new Order("3/03/2023", breadAmount, pastryAmount, totalPrice);
         chosenVendor.AddOrder(newOrder);
         return View("Index", chosenVendor);

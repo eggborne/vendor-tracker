@@ -30,10 +30,11 @@ namespace VendorTracker.Models
       Orders.Add(order);
     }
 
-    public int getTotal(Dictionary<string, int> productAmounts) {
+    public int GetTotal(Dictionary<string, int> productAmounts) {
       int total = 0;
-      total += productAmounts["bread"] * this.Rates["bread"];
-      total +=productAmounts["pastry"] * this.Rates["pastry"];
+      foreach (var productEntry in productAmounts) {
+        total += productEntry.Value * this.Rates[productEntry.Key];
+      }
       return total;
     }
 

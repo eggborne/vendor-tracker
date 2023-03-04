@@ -27,11 +27,11 @@ namespace VendorTracker.Controllers
       public ActionResult Create(
         string vendorName,
         string vendorDescription,
-        string vendorBreadPerMonth,
-        string vendorPastriesPerMonth
+        string vendorPhone,
+        string vendorEmail
       )
       {
-        Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorBreadPerMonth, vendorPastriesPerMonth);
+        Vendor newVendor = new Vendor(vendorName, vendorDescription, vendorPhone, vendorEmail);
         return RedirectToAction("Index");
       }
     }

@@ -51,11 +51,11 @@ form textarea {
   width: 90%;
 }
 
-.form-input-area input[type="number"] {
+/* .form-input-area input[type="number"] {
   width: 5rem;
   height: 4rem;
   font-size: 2rem;
-}
+} */
 
 form > .button-area {
   display: flex;
@@ -88,9 +88,28 @@ header {
 
 main {
   background-color: #a3a3a3;
-  /* padding: 2rem; */
   flex-grow: 1;
   padding: 1rem;
+}
+
+#vendor-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+  outline: 2px solid red;
+  display: flex;
+}
+
+#vendor-list > .vendor-card {
+  width: 20rem;
+  padding: 1rem;
+  border: 1px solid rgb(29, 57, 29);
+  display: flex;
+  flex-direction: column;
+}
+
+.vendor-card > div:last-of-type {
+  flex-grow: 1;
 }
 
 footer {

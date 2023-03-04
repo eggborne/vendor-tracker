@@ -9,14 +9,23 @@
   {
     <p>No vendors!</p>
   }
-  <ul>
+  <ul id="vendor-list">
     @foreach (Vendor vendor in Model)
     {
       <li class="vendor-card" id=@vendor.Id>
-        <div>@vendor.Name</div>
-        <div>@vendor.Description</div>
-        <div>@vendor.BreadPerMonth</div>
-        <div>@vendor.PastriesPerMonth</div>
+        <div class="vendor-name">
+          <h3>@vendor.Name</h3>
+        </div>
+        <div class="vendor-description">
+          @vendor.Description
+        </div>
+        <div class="vendor-bread">
+          Phone: @vendor.Phone
+        </div>
+        <div class="vendor-pastries">
+          Email: @vendor.Email
+        </div>
+        <button class="view-orders-button">View / Add Orders</button>
       </li>
     }
   </ul>

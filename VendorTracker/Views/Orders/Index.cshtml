@@ -9,10 +9,10 @@
   {
     <p>No orders!</p>
   }
-  <ul id="order-list">
+  <ul class="card-list" id="order-list">
     @foreach (Order order in Model.Orders)
     {
-      <li class="order-card">
+      <li class="card order-card">
         <div class="order-date">
           Order Date: @order.Date
         </div>

@@ -10,10 +10,10 @@
   {
     <p>No vendors!</p>
   }
-  <ul id="vendor-list">
+  <ul class="card-list" id="vendor-list">
     @foreach (Vendor vendor in Model)
     {
-      <li class="vendor-card" id=@vendor.Id>
+      <li class="card vendor-card" id=@vendor.Id>
         <div class="vendor-name">
           <h3>@vendor.Name</h3>
         </div>

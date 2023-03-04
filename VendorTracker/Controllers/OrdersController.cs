@@ -30,7 +30,7 @@ namespace VendorTracker.Controllers
       )
       {
         Vendor chosenVendor = Vendor.Find(vendorId);
-        Order newOrder = new Order("3/03/2023", breadAmount, pastryAmount, totalPrice, vendorId);
+        Order newOrder = new Order("3/03/2023", breadAmount, pastryAmount, totalPrice);
         chosenVendor.AddOrder(newOrder);
         return View("Index", chosenVendor);
       }

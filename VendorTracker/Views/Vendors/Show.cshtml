@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@using VendorTracker.Models
+
+<div class="message" id="vendors-message">Vendor details for @Model.Name:</div>
+ @if (Model != null && Model.Count > 0)
+  {
+    <div class="vendor-card" id=@Model.Id>
+      <div class="vendor-name">
+        <h3>@Model.Name</h3>
+      </div>
+      <div class="vendor-description">
+        @Model.Description
+      </div>
+      <div class="vendor-phone">
+        Phone: @Model.Phone
+      </div>
+      <div class="vendor-email">
+        Email: @Model.Email
+      </div>
+    </div>
+  } else {
+    <p>No orders!</p>
+  }
+
+  @* <a href='/vendors/@order.Id/new'><button>Add Another Order</button></a>
+  <a href='/vendors/@order.Id'><button>View All Orders</button></a> *@

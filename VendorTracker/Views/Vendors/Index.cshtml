@@ -19,13 +19,15 @@
         <div class="vendor-description">
           @vendor.Description
         </div>
-        <div class="vendor-bread">
+        <div class="vendor-phone">
           Phone: @vendor.Phone
         </div>
-        <div class="vendor-pastries">
+        <div class="vendor-email">
           Email: @vendor.Email
         </div>
-        <button class="view-orders-button">View / Add Orders</button>
+        <a href="./vendors/@vendor.Id/orders">
+          <button class="view-orders-button">View / Add Orders</button>
+        </a>
       </li>
     }
   </ul>

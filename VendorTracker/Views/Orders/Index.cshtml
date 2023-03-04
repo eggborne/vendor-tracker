@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using VendorTracker.Models
+
+<div class="message" id="vendors-message">Orders:</div>
+ @if (Model != null && Model.Count > 0)
+  {
+  <ul id="order-list">
+    List of orders...
+    @* @foreach (Order order in Model)
+    {
+      <li class="order-card">
+        <div class="bread-amount">
+          @order.breadAmount
+        </div>
+        <div class="pastry-amount">
+          @order.breadAmount
+        </div>
+        <div class="total-price">
+          @order.totalPrice
+        </div>
+        
+      </li>
+    } *@
+  </ul>
+  } else {
+    <p>No orders!</p>
+  }
+
+  @* <a href='/vendors/@order.Id/new'><button>Add Another Order</button></a>
+  <a href='/vendors/@order.Id'><button>View All Orders</button></a> *@

@@ -9,15 +9,15 @@ namespace VendorTracker.Tests
   public class OrderTests : IDisposable
   {
 
-    // public void Dispose()
-    // {
-    //   Order.ClearAll();
-    // }
+    public void Dispose()
+    {
+      Order.ClearAll();
+    }
 
     [TestMethod]
     public void OrderConstructor_CreatesInstanceOfOrder_Order()
     {
-      PuzzleString newOrder = new Order();
+      Order newOrder = new Order("3/03/2023", "12", "6", "48", 1);
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
 

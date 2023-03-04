@@ -9,15 +9,15 @@ namespace VendorTracker.Tests
   public class VendorTests : IDisposable
   {
 
-    // public void Dispose()
-    // {
-    //   Vendor.ClearAll();
-    // }
+    public void Dispose()
+    {
+      Vendor.ClearAll();
+    }
 
     [TestMethod]
     public void VendorConstructor_CreatesInstanceOfVendor_Vendor()
     {
-      PuzzleString newVendor = new Vendor();
+      Vendor newVendor = new Vendor("","","","");
       Assert.AreEqual(typeof(Vendor), newVendor.GetType());
     }
 

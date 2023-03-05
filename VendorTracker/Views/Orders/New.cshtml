@@ -4,8 +4,8 @@
 
 <div class="message" id="vendors-message">Add order for @Model.Name</div>
 <form action="/vendors/@Model.Id/orders" method="post" id="new-order-form">
-  <div class="form-input-area"><label for="breadAmount">Bread units:</label><input type="number" name="breadAmount" placeholder="12"></div>
-  <div class="form-input-area"><label for="pastryAmount">Pastry units:</label><input type="number" name="pastryAmount" placeholder="6"></div>
+  <div class="form-input-area"><label for="breadAmount">Bread units:</label><input value="12" type="number" name="breadAmount"></div>
+  <div class="form-input-area"><label for="pastryAmount">Pastry units:</label><input value="6" type="number" name="pastryAmount"></div>
   <input type="text" name="vendorId" value="@Model.Id">
   <div class="button-area">
     <button class="green" type="submit">Add Order</button>

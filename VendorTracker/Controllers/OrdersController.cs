@@ -35,7 +35,9 @@ namespace VendorTracker.Controllers
       productAmounts["bread"] = int.Parse(breadAmount);
       productAmounts["pastry"] = int.Parse(pastryAmount);
       int totalPrice = chosenVendor.GetTotal(productAmounts);
-      Order newOrder = new Order("3/03/2023", breadAmount, pastryAmount, totalPrice);
+      DateTime localDate = DateTime.Now;
+      string dateString = localDate.ToString("MMMM dd, yyyy h:m:ss tt");
+      Order newOrder = new Order(dateString, breadAmount, pastryAmount, totalPrice);
       chosenVendor.AddOrder(newOrder);
       return View("Index", chosenVendor);
     }

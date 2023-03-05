@@ -36,6 +36,13 @@ button.green {
   background-color: rgb(187, 255, 187);
   margin: 2rem 0;
 }
+
+button.yellow {
+  background-color: rgb(244, 255, 187);
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
 button.red {
   background-color: rgb(255, 187, 187);
   margin-top: 0;
@@ -153,8 +160,13 @@ main {
   list-style-type: none;
   padding: 0;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+#order-list {
+  
 }
 
 #order-list a {
@@ -191,6 +203,26 @@ main {
   font-style: italic;
 }
 
+.order-card-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-card-row > div {
+  width: 50%;
+}
+
+.order-card-row > div:first-child {
+  text-align: left;
+}
+
+.order-card-row > div:last-child {
+  text-align: right;
+}
+.order-card-row:last-of-type > div:last-child {
+  font-weight: bold;
+}
+
 footer {
   font-size: 1rem;
 }
@@ -211,6 +243,7 @@ footer > span {
 
   main {
     padding: 2.5rem;
+    max-width: 900px;
   }
 
   form {
@@ -253,8 +286,8 @@ footer > span {
     padding: 0.5rem;
   }
 
-  .card {
-    width: 16rem;
+  #order-list .card {
+    width: 20rem;
   }
 
 }

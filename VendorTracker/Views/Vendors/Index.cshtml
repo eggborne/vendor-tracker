@@ -26,11 +26,17 @@
         <div class="vendor-email">
           Email: @vendor.Email
         </div>
+        <div class="vendor-order-count">
+          Orders: @vendor.Orders.Count
+        </div>
         <a href="/vendors/@vendor.Id/orders">
           <button>View / Add Orders</button>
         </a>
         <a href="/vendors/@vendor.Id/delete">
           <button class="red">Delete Vendor</button>
+        </a>
+        <a href="/vendors/@vendor.Id/edit">
+          <button class="yellow">Edit Vendor</button>
         </a>
       </li>
     }

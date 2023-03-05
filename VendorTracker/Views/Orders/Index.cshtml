@@ -13,17 +13,21 @@
     @foreach (Order order in Model.Orders)
     {
       <li class="card order-card">
-        <div class="order-date">
-          Order Date: @order.Date
+        <div class="order-card-row">
+          <div>Order Date:</div>
+          <div>@order.Date</div>
         </div>
-        <div class="bread-amount">
-          Bread units: @order.BreadAmount
+        <div class="order-card-row">
+          <div>Bread units:</div>
+          <div>@order.BreadAmount @@ $@Model.Rates["bread"]</div>
         </div>
-        <div class="pastry-amount">
-          Pastry units: @order.PastryAmount
+        <div class="order-card-row">
+          <div>Pastry units:</div>
+          <div>@order.PastryAmount @@ $@Model.Rates["pastry"]</div>
         </div>
-        <div class="total-price">
-          Total price: $@order.TotalPrice
+        <div class="order-card-row">
+          <div>Total price:</div>
+          <div>$@order.TotalPrice</div>
         </div>
         <a href="/vendors/@Model.Id/orders/@order.Id/delete">
           <button class="red">Delete Order</button>

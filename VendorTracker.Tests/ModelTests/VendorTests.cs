@@ -104,5 +104,53 @@ namespace VendorTracker.Tests
 
       Assert.AreEqual(secondVendor, retrievedVendor);
     }
+
+    [TestMethod]
+    public void VendorGetTotal_ReturnsSumOfProductPrices_Int()
+    {
+      int breadUnitsOrdered = int.Parse(testOrder1.BreadAmount);
+      int pastryUnitsOrdered = int.Parse(testOrder1.PastryAmount);
+      int breadRate = testVendor1.Rates["bread"];
+      int pastryRate = testVendor1.Rates["pastry"];
+      int expectedTotal = (breadUnitsOrdered * breadRate) + (pastryUnitsOrdered * pastryRate);
+      Dictionary<string, int> productAmounts = new Dictionary<string, int>();
+      productAmounts["bread"] = breadUnitsOrdered;
+      productAmounts["pastry"] = pastryUnitsOrdered;
+      
+      Assert.AreEqual(testVendor1.GetTotal(productAmounts), expectedTotal);
+    }
+
+    [TestMethod]
+    public void VendorDeleteAllOrders_EmptiesOrdersList_Void()
+    {
+      testVendor1.AddOrder(testOrder1);
+      testVendor1.AddOrder(testOrder2);
+      bool listHadOrdersBefore = testVendor1.Orders.Count == 2;
+      testVendor1.DeleteAllOrders();
+      bool listIsEmptyAfter = testVendor1.Orders.Count == 0;
+
+      Assert.AreEqual(true, (listHadOrdersBefore && listIsEmptyAfter));
+    }
+
+    [TestMethod]
+    public void VendorDeleteOrder_RemovesOrderFromOrdersList_Void()
+    {
+      testVendor1.AddOrder(testOrder1);
+      bool existsInListBefore = testVendor1.Orders.Contains(testOrder1);
+      testVendor1.DeleteOrder(testOrder1.Id);
+      bool goneFromListAfter = !testVendor1.Orders.Contains(testOrder1);
+
+      Assert.AreEqual(true, (existsInListBefore && goneFromListAfter));
+    }
+
+    [TestMethod]
+    public void VendorDelete_RemovesSelfFromInstancesList_Void()
+    {
+      bool existsInListBefore = Vendor.GetAll().Contains(testVendor1);
+      testVendor1.Delete();
+      bool goneFromListAfter = !Vendor.GetAll().Contains(testVendor1);
+
+      Assert.AreEqual(true, (existsInListBefore && goneFromListAfter));
+    }
   }
 }

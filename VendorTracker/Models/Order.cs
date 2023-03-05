@@ -26,11 +26,6 @@ namespace VendorTracker.Models
       return _instances;
     }
 
-    public void Delete()
-    {
-      _instances.Remove(this);
-    }
-
     public static void ClearAll()
     {
       _instances.Clear();
@@ -45,6 +40,11 @@ namespace VendorTracker.Models
         }
       }
       return foundInstance;
+    }
+
+    public void Delete()
+    {
+      _instances.Remove(this);
     }
   }
 }

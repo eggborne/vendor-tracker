@@ -25,12 +25,8 @@ namespace VendorTracker.Models
       Id = _instances.Count;
     }
 
-    public void AddOrder(Order order)
+    public int GetTotal(Dictionary<string, int> productAmounts) 
     {
-      Orders.Add(order);
-    }
-
-    public int GetTotal(Dictionary<string, int> productAmounts) {
       int total = 0;
       foreach (var productEntry in productAmounts) {
         total += productEntry.Value * this.Rates[productEntry.Key];
@@ -38,12 +34,20 @@ namespace VendorTracker.Models
       return total;
     }
 
-    public void DeleteOrder(int orderId) {
+    public void AddOrder(Order order)
+    {
+      Orders.Add(order);
+    }
+
+    public void DeleteAllOrders() 
+    {
+      this.Orders.Clear();
+    }
+
+    public void DeleteOrder(int orderId) 
+    {
       Order doomedOrder = Order.Find(orderId);
       this.Orders.Remove(doomedOrder);
-    }
-    public void DeleteAllOrders() {
-      this.Orders.Clear();
     }
 
     public static List<Vendor> GetAll()

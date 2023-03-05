@@ -80,5 +80,15 @@ namespace VendorTracker.Tests
 
       Assert.AreEqual(secondOrder, retrievedOrder);
     }
+
+    [TestMethod]
+    public void OrderDelete_RemovesSelfFromInstancesList_Void()
+    {
+      bool existsInListBefore = Order.GetAll().Contains(testOrder1);
+      testOrder1.Delete();
+      bool goneFromListAfter = !Order.GetAll().Contains(testOrder1);
+
+      Assert.AreEqual(true, (existsInListBefore && goneFromListAfter));
+    }
   }
 }

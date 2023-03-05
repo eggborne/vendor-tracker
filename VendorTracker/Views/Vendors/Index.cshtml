@@ -8,7 +8,7 @@
 
  @if (Model.Count == 0)
   {
-    <p>No vendors!</p>
+    <p class="empty-list-message">No vendors!</p>
   }
   <ul class="card-list" id="vendor-list">
     @foreach (Vendor vendor in Model)
@@ -27,12 +27,20 @@
           Email: @vendor.Email
         </div>
         <a href="/vendors/@vendor.Id/orders">
-          <button class="view-orders-button">View / Add Orders</button>
+          <button>View / Add Orders</button>
+        </a>
+        <a href="/vendors/@vendor.Id/delete">
+          <button class="red">Delete Vendor</button>
         </a>
       </li>
     }
   </ul>
 
 <a href="/vendors/new">
-  <button>Add New Vendor</button>
+  <button class="green">Add New Vendor</button>
 </a>
+@if (Model.Count > 0) {
+  <a href="/vendors/delete">
+    <button class="red">Delete All Vendors</button>
+  </a>
+}

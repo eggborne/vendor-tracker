@@ -43,6 +43,11 @@ namespace VendorTracker.Models
       return _instances;
     }
 
+    public void Delete()
+    {
+      _instances.Remove(this);
+    }
+
     public static void ClearAll()
     {
       _instances.Clear();
@@ -50,7 +55,13 @@ namespace VendorTracker.Models
 
     public static Vendor Find(int searchId)
     {
-      return _instances[searchId-1];
+      Vendor foundInstance = null;
+      foreach (var instance in _instances) {
+        if (instance.Id == searchId) {
+          foundInstance = instance;
+        }
+      }
+      return foundInstance;
     }
   }
 }

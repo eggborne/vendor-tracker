@@ -1,5 +1,6 @@
 :root {
-  --main-width: 80vw;
+  --main-width: 100vw;
+  --header-height: 4rem;
   --header-color: #333;
 }
 
@@ -27,8 +28,17 @@ button {
   font-size: inherit;
   width: 12rem;
   padding: 1rem 0;
-  margin: 1rem;
+  margin: 1rem 0;
   border-radius: 0.5rem;
+}
+
+button.green {
+  background-color: rgb(187, 255, 187);
+  margin: 2rem 0;
+}
+button.red {
+  background-color: rgb(255, 187, 187);
+  margin: 0;
 }
 
 input, textarea {
@@ -40,14 +50,21 @@ main h1 {
 }
 
 form {
-  margin: 1rem;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 6rem;
-  grid-template-columns: 70%;
+  grid-template-columns: 1fr;
+}
+
+form + a, .card-list + a, .card-list + * + a {
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 
 form#new-order-form {
   grid-template-rows: 1fr 1fr 6rem;
+  grid-template-columns: auto;
+  justify-content: center;
 }
 
 form#new-order-form > input:last-of-type {
@@ -57,21 +74,22 @@ form#new-order-form > input:last-of-type {
 .form-input-area {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0.25rem;
   gap: 0.5rem;
 }
 
 .form-input-area input {
   font-family: inherit;
   font-size: inherit;
-  width: 50%;
+  width: 100%;
   padding: 0.5rem;
 }
 
 form textarea {
   padding: 0.5rem;
-  width: 90%;
+  width: 100%;
 }
 
 .form-input-area input[type="number"] {
@@ -88,10 +106,22 @@ form > .button-area {
 
 .message {
   font-size: 1.5rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.empty-list-message {
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 header, footer {
-  height: 4rem;
+  height: var(--header-height);
   color:#CCC;
   background-color: var(--header-color);
   padding: 1rem;
@@ -100,10 +130,14 @@ header, footer {
   justify-content: center;
 }
 
+header > h1 {
+  font-size: calc(var(--header-height) / 2.5);
+}
+
 main {
   background-color: #dfdfdf;
   flex-grow: 1;
-  padding: 2.5rem;
+  padding: 0 1.5rem;
   align-self: center;
   width: var(--main-width);
 }
@@ -111,14 +145,12 @@ main {
 .card-list {
   list-style-type: none;
   padding: 0;
-  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
 .card {
-  width: 16rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -126,6 +158,10 @@ main {
   background-color: #00000022;
   border: 1px solid rgb(89, 89, 89);
   border-radius: 0.5rem;
+}
+
+.vendor-card > a {
+  align-self: center;
 }
 
 .vendor-card > div:last-of-type {
@@ -142,4 +178,64 @@ footer {
 
 footer > span {
   font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+
+  :root {
+    --main-width: 80vw;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  main {
+    padding: 2.5rem;
+  }
+
+  form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 6rem;
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+  }
+
+  .form-input-area {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .form-input-area:not(:last-of-type) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .form-input-area:nth-child(5) {
+    grid-row-start: 5;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .form-input-area:nth-child(6) {
+    grid-row-start: 5;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  form > .button-area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .form-input-area input {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.5rem;
+  }
+
+  .card {
+    width: 16rem;
+  }
+
 }

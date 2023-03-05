@@ -7,7 +7,7 @@
 <div class="message" id="vendors-message">Orders for @Model.Name:</div>
  @if (Model.Orders.Count == 0)
   {
-    <p>No orders!</p>
+    <p class="empty-list-message">No orders!</p>
   }
   <ul class="card-list" id="order-list">
     @foreach (Order order in Model.Orders)
@@ -30,5 +30,5 @@
     }
   </ul>
 
-  <a href='/vendors/@Model.Id/orders/new'><button>Add New Order</button></a>
+  <a href='/vendors/@Model.Id/orders/new'><button class="green">Add New Order</button></a>
   <a href='/vendors'><button>Back to Vendor List</button></a>

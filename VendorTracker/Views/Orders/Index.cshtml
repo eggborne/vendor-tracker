@@ -25,10 +25,17 @@
         <div class="total-price">
           Total price: $@order.TotalPrice
         </div>
-        
+        <a href="/vendors/@Model.Id/orders/@order.Id/delete">
+          <button class="red">Delete Order</button>
+        </a>
       </li>
     }
   </ul>
 
   <a href='/vendors/@Model.Id/orders/new'><button class="green">Add New Order</button></a>
+  @if (Model.Orders.Count > 0) {
+  <a href="/vendors/@Model.Id/orders/delete">
+    <button class="red">Delete All Orders</button>
+  </a>
+  }
   <a href='/vendors'><button>Back to Vendor List</button></a>

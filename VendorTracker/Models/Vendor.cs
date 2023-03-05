@@ -38,6 +38,14 @@ namespace VendorTracker.Models
       return total;
     }
 
+    public void DeleteOrder(int orderId) {
+      Order doomedOrder = Order.Find(orderId);
+      this.Orders.Remove(doomedOrder);
+    }
+    public void DeleteAllOrders() {
+      this.Orders.Clear();
+    }
+
     public static List<Vendor> GetAll()
     {
       return _instances;

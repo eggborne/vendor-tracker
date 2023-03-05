@@ -39,5 +39,22 @@ namespace VendorTracker.Controllers
       chosenVendor.AddOrder(newOrder);
       return View("Index", chosenVendor);
     }
+
+    [HttpGet("/vendors/{vendorId}/orders/delete")]
+    public ActionResult DeleteAll(int vendorId)
+    {
+      Vendor chosenVendor = Vendor.Find(vendorId);
+      chosenVendor.DeleteAllOrders();
+      return View("Index", chosenVendor);
+    }
+
+    [HttpGet("/vendors/{vendorId}/orders/{orderId}/delete")]
+    public ActionResult Destroy(int vendorId, int orderId)
+    {
+      Vendor chosenVendor = Vendor.Find(vendorId);
+      chosenVendor.DeleteOrder(orderId);
+      return View("Index", chosenVendor);
+    }
+
   }
 }

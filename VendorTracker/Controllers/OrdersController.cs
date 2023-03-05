@@ -36,7 +36,7 @@ namespace VendorTracker.Controllers
       productAmounts["pastry"] = int.Parse(pastryAmount);
       int totalPrice = chosenVendor.GetTotal(productAmounts);
       DateTime localDate = DateTime.Now;
-      string dateString = localDate.ToString("MMMM dd, yyyy h:m:ss tt");
+      string dateString = localDate.ToString("MMMM dd, yyyy h:mm:ss tt");
       Order newOrder = new Order(dateString, breadAmount, pastryAmount, totalPrice);
       chosenVendor.AddOrder(newOrder);
       return View("Index", chosenVendor);
@@ -58,5 +58,31 @@ namespace VendorTracker.Controllers
       return View("Index", chosenVendor);
     }
 
+    [HttpGet("/vendors/{vendorId}/orders/{orderId}/edit")]
+    public ActionResult Edit(int vendorId, int orderId)
+    {
+      Order chosenOrder = Order.Find(orderId);
+      return View(chosenOrder);
+    }
+
+    [HttpPost("/vendors/{vendorId}/orders/{orderId}/edit")]
+    public ActionResult Edit(
+      int vendorId,
+      int orderId,
+      string breadAmount,
+      string pastryAmount
+    )
+    {
+      Order chosenOrder = Order.Find(orderId);
+      Vendor orderVendor = Vendor.Find(vendorId);
+      chosenOrder.BreadAmount = breadAmount;
+      chosenOrder.PastryAmount = pastryAmount;
+      Dictionary<string, int> productAmounts = new Dictionary<string, int>();
+      productAmounts["bread"] = int.Parse(breadAmount);
+      productAmounts["pastry"] = int.Parse(pastryAmount);
+      int totalPrice = orderVendor.GetTotal(productAmounts);
+      chosenOrder.TotalPrice = totalPrice;
+      return View("Index", orderVendor);
+    }
   }
 }

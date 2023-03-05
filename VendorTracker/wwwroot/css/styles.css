@@ -40,13 +40,18 @@ button.green {
 button.yellow {
   background-color: rgb(244, 255, 187);
   margin-top: 0;
-  margin-bottom: 2rem;
 }
 
 button.red {
   background-color: rgb(255, 187, 187);
   margin-top: 0;
+}
+
+main > a > button.red {
   margin-bottom: 2rem;
+}
+main > a {
+  text-align: center;
 }
 
 .card-list button.red {
@@ -73,13 +78,13 @@ form + a, .card-list + a, .card-list + * + a {
   text-align: center;
 }
 
-form#new-order-form {
+form.order-form {
   grid-template-rows: 1fr 1fr 6rem;
   grid-template-columns: auto;
   justify-content: center;
 }
 
-form#new-order-form > input:last-of-type {
+form.order-form > input:last-of-type {
   display: none;
 }
 
@@ -165,10 +170,6 @@ main {
   gap: 1rem;
 }
 
-#order-list {
-  
-}
-
 #order-list a {
   text-decoration: none;
   display: flex;
@@ -181,14 +182,40 @@ main {
 }
 
 .card {
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   background-color: #00000022;
   border: 1px solid rgb(89, 89, 89);
   border-radius: 0.5rem;
   width: 100%;
+}
+
+.card > .edit-buttons-area button,
+.card > .card-button-area button {
+  margin: 0;
+}
+
+.card-row-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card-button-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edit-buttons-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-buttons-area button {
+  width: 5.75rem;
 }
 
 .vendor-card > a {
@@ -201,6 +228,10 @@ main {
 
 .vendor-card > .vendor-description {
   font-style: italic;
+}
+
+.order-card .edit-buttons-area {
+  align-self: center;
 }
 
 .order-card-row {
@@ -234,7 +265,7 @@ footer > span {
 @media screen and (min-width: 768px) {
 
   :root {
-    --main-width: 80vw;
+    --main-width: 90vw;
   }
 
   button {
@@ -243,7 +274,6 @@ footer > span {
 
   main {
     padding: 2.5rem;
-    max-width: 900px;
   }
 
   form {
@@ -287,7 +317,27 @@ footer > span {
   }
 
   #order-list .card {
+    padding: 1.5rem;
     width: 20rem;
+  }
+
+  .card.vendor-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: #00000022;
+    border: 1px solid rgb(89, 89, 89);
+    border-radius: 0.5rem;
+    width: 100%;
+  }
+  
+  .card > .card-row-area {
+    flex-grow: 1;
+  }
+  .card > .card-button-area {
+    width: min-content;
+    align-items: flex-end;
   }
 
 }

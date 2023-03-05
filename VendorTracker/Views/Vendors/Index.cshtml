@@ -14,30 +14,36 @@
     @foreach (Vendor vendor in Model)
     {
       <li class="card vendor-card" id=@vendor.Id>
-        <div class="vendor-name">
-          <h3>@vendor.Name</h3>
+        <div class="card-row-area">
+          <div class="vendor-name">
+            <h3>@vendor.Name</h3>
+          </div>
+          <div class="vendor-description">
+            @vendor.Description
+          </div>
+          <div class="vendor-phone">
+            Phone: @vendor.Phone
+          </div>
+          <div class="vendor-email">
+            Email: @vendor.Email
+          </div>
+          <div class="vendor-order-count">
+            Orders: @vendor.Orders.Count
+          </div>
         </div>
-        <div class="vendor-description">
-          @vendor.Description
+        <div class="card-button-area">
+          <a href="/vendors/@vendor.Id/orders">
+            <button>View / Add Orders</button>
+          </a>
+          <div class="edit-buttons-area">
+            <a href="/vendors/@vendor.Id/edit">
+              <button class="yellow">Edit</button>
+            </a>
+            <a href="/vendors/@vendor.Id/delete">
+              <button class="red">Delete</button>
+            </a>
+          </div>
         </div>
-        <div class="vendor-phone">
-          Phone: @vendor.Phone
-        </div>
-        <div class="vendor-email">
-          Email: @vendor.Email
-        </div>
-        <div class="vendor-order-count">
-          Orders: @vendor.Orders.Count
-        </div>
-        <a href="/vendors/@vendor.Id/orders">
-          <button>View / Add Orders</button>
-        </a>
-        <a href="/vendors/@vendor.Id/delete">
-          <button class="red">Delete Vendor</button>
-        </a>
-        <a href="/vendors/@vendor.Id/edit">
-          <button class="yellow">Edit Vendor</button>
-        </a>
       </li>
     }
   </ul>

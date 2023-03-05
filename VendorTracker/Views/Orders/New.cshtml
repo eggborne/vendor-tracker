@@ -3,7 +3,7 @@
 }
 
 <div class="message" id="vendors-message">Add order for @Model.Name</div>
-<form action="/vendors/@Model.Id/orders" method="post" id="new-order-form">
+<form action="/vendors/@Model.Id/orders" method="post" class="order-form">
   <div class="form-input-area"><label for="breadAmount">Bread units:</label><input value="12" type="number" name="breadAmount"></div>
   <div class="form-input-area"><label for="pastryAmount">Pastry units:</label><input value="6" type="number" name="pastryAmount"></div>
   <input type="text" name="vendorId" value="@Model.Id">

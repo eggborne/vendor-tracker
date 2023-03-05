@@ -29,9 +29,14 @@
           <div>Total price:</div>
           <div>$@order.TotalPrice</div>
         </div>
-        <a href="/vendors/@Model.Id/orders/@order.Id/delete">
-          <button class="red">Delete Order</button>
-        </a>
+        <div class="edit-buttons-area">
+          <a href="/vendors/@Model.Id/orders/@order.Id/edit">
+            <button class="yellow">Edit</button>
+          </a>
+          <a href="/vendors/@Model.Id/orders/@order.Id/delete">
+            <button class="red">Delete</button>
+          </a>
+        </div>
       </li>
     }
   </ul>

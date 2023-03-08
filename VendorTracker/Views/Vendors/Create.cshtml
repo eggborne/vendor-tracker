@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model VendorTracker.Models.Vendor
+
+<h4>Add a new Vendor</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+
+  @Html.LabelFor(model => model.Phone)
+  @Html.TextBoxFor(model => model.Phone)
+
+  @Html.LabelFor(model => model.Email)
+  @Html.TextBoxFor(model => model.Email)
+
+  @Html.LabelFor(model => model.BreadRate)
+  @Html.TextBoxFor(model => model.BreadRate)
+
+  @Html.LabelFor(model => model.PastryRate)
+  @Html.TextBoxFor(model => model.PastryRate)
+  <button class="green" type="submit">Add</button>
+}
+
+<a href='@Url.Action("Index")'>
+  <button>Back to Vendor List</button>
+</a>

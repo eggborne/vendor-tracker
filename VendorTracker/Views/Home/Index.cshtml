@@ -4,9 +4,12 @@
 
 <h1>Greetings, Pierre.</h1>
 <div id="greeting-message">
-  Click the button below to see your list of vendors.
+  Click the buttons below to see your vendors or orders.
 </div>
-
-<a href="/vendors">
+<p>&nbsp;</p>
+<a href='@Url.Action("Index", "Vendors")'>
   <button>See Vendors</button>
+</a>
+<a href='@Url.Action("Index", "Orders")'>
+  <button>See Orders</button>
 </a>

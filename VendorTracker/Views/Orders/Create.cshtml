@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model VendorTracker.Models.Order
+
+<h4>New order for @Model.Vendor.Name</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Date)
+  @Html.TextBoxFor(model => model.Date, new { @type = "date" })
+
+  @Html.LabelFor(model => model.BreadAmount)
+  @Html.TextBoxFor(model => model.BreadAmount, new { @type = "number" })
+
+  @Html.LabelFor(model => model.PastryAmount)
+  @Html.TextBoxFor(model => model.PastryAmount, new { @type = "number" })
+
+  @Html.LabelFor(model => model.TotalPrice)
+  @Html.TextBoxFor(model => model.TotalPrice, new { @type = "number" })
+  <button class="green" type="submit">Add</button>
+}
+
+<a href='@Url.Action("Index")'>
+  <button>Back to Vendor List</button>
+</a>

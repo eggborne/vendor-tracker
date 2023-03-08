@@ -2,49 +2,41 @@
   Layout = "_Layout";
 }
 
-@using VendorTracker.Models
+@using VendorTracker.Models;
+@model List<VendorTracker.Models.Order>;
 
-<div class="message" id="vendors-message">Orders for @Model.Name:</div>
- @if (Model.Orders.Count == 0)
-  {
-    <p class="empty-list-message">No orders!</p>
-  }
-  <ul class="card-list" id="order-list">
-    @foreach (Order order in Model.Orders)
+<h1>Orders</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No orders!</h3>
+} 
+else
+{
+  <ul id="order-list" class="card-list">
+    @foreach (Order order in Model)
     {
       <li class="card order-card">
-        <div class="order-card-row">
-          <div>Order Date:</div>
-          <div>@order.Date</div>
-        </div>
-        <div class="order-card-row">
-          <div>Bread units:</div>
-          <div>@order.BreadAmount @@ $@Model.Rates["bread"]</div>
-        </div>
-        <div class="order-card-row">
-          <div>Pastry units:</div>
-          <div>@order.PastryAmount @@ $@Model.Rates["pastry"]</div>
-        </div>
-        <div class="order-card-row">
-          <div>Total price:</div>
-          <div>$@order.TotalPrice</div>
-        </div>
+        <div class="order-card-row"><div>Vendor:</div><div>@Html.DisplayFor(model => order.Vendor.Name)</div></div>
+        <div class="order-card-row"><div>Order date:</div><div>@Html.DisplayFor(model => order.Date)</div></div>
+        <div class="order-card-row"><div>Bread units:</div><div>@Html.DisplayFor(model => order.BreadAmount)</div></div>
+        <div class="order-card-row"><div>Pastry units:</div><div>@Html.DisplayFor(model => order.PastryAmount)</div></div>
+        <div class="order-card-row"><div>Total:</div><div>$@Html.DisplayFor(model => order.TotalPrice)</div></div>
+        <div class="card-button-area">
         <div class="edit-buttons-area">
-          <a href="/vendors/@Model.Id/orders/@order.Id/edit">
+          <a href='@Url.Action("Edit", new { id = order.OrderId })'>
             <button class="yellow">Edit</button>
           </a>
-          <a href="/vendors/@Model.Id/orders/@order.Id/delete">
+          <a href='@Url.Action("Delete", new { id = order.OrderId })'>
             <button class="red">Delete</button>
           </a>
         </div>
+      </div>
       </li>
     }
   </ul>
+}
 
-  <a href='/vendors/@Model.Id/orders/new'><button class="green">Add New Order</button></a>
-  @if (Model.Orders.Count > 0) {
-  <a href="/vendors/@Model.Id/orders/delete">
-    <button class="red">Delete All Orders</button>
-  </a>
-  }
-  <a href='/vendors'><button>Back to Vendor List</button></a>
+<a href='@Url.Action("Index", "Home")'>
+  <button>Back to Home</button>
+</a>

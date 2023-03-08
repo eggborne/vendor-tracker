@@ -182,14 +182,14 @@ main {
 }
 
 .card {
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  background-color: #00000022;
+  background-color: #00000011;
   border: 1px solid rgb(89, 89, 89);
   border-radius: 0.5rem;
   width: 100%;
+  gap: 0;
 }
 
 .card > .edit-buttons-area button,
@@ -202,11 +202,16 @@ main {
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .card-button-area {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+  justify-content: flex-end;
   gap: 0.5rem;
+  align-self: center;
+  margin-top: 1.5rem;
 }
 
 .edit-buttons-area {
@@ -237,10 +242,16 @@ main {
 .order-card-row {
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem;
+  gap: 0.25rem;
 }
 
 .order-card-row > div {
   width: 50%;
+}
+
+.order-card-row:nth-child(odd) {
+  background-color: #00000011;
 }
 
 .order-card-row > div:first-child {
@@ -250,6 +261,10 @@ main {
 .order-card-row > div:last-child {
   text-align: right;
 }
+
+.order-card-row:first-of-type > div:first-child,
+.order-card-row:first-of-type > div:last-child,
+.order-card-row:last-of-type > div:first-child,
 .order-card-row:last-of-type > div:last-child {
   font-weight: bold;
 }
@@ -317,12 +332,10 @@ footer > span {
   }
 
   #order-list .card {
-    padding: 1.5rem;
     width: 20rem;
   }
 
   .card.vendor-card {
-    padding: 1.5rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;

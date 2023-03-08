@@ -1,17 +1,37 @@
+
 @{
   Layout = "_Layout";
 }
 
-<div class="message" id="vendors-message">Editing vendor @Model.Name</div>
-<form method="post" action="/vendors/@Model.Id/edit">
-  <div class="form-input-area"><label for="vendorName">Vendor name:</label><input value="@Model.Name" type="text" name="vendorName" placeholder='Vandelay Industries'></div>
-  <div class="form-input-area"><label for="vendorDescription">Vendor description:</label><textarea value=@Model.Description name="vendorDescription" placeholder="Importer/Exporter, buys a lot in the springtime"></textarea></div>
-  <div class="form-input-area"><label for="vendorPhone">Phone:</label><input value=@Model.Phone type="tel" name="vendorPhone" placeholder="5038675309"></div>
-  <div class="form-input-area"><label for="vendorEmail">Email:</label><input value=@Model.Email type="text" name="vendorEmail" placeholder="art@vandelay.dev"></div>
-  <div class="form-input-area"><label for="vendorBreadRate">Price per Bread unit:</label><input value=@Model.Rates["bread"] type="number" name="vendorBreadRate" placeholder="3"></div>
-  <div class="form-input-area"><label for="vendorPastryRate">Price per Pastry unit:</label><input value=@Model.Rates["pastry"] type="number" name="vendorPastryRate" placeholder="2"></div>
-  <div class="button-area">
-    <button class="green" type="submit">Save Changes</button>
-  </div>  
-</form>
-<a href='/vendors'><button type="button">Exit Without Saving</button></a>
+@model VendorTracker.Models.Vendor
+
+<h4>Editing @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.VendorId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
+
+  @Html.LabelFor(model => model.Phone)
+  @Html.EditorFor(model => model.Phone)
+
+  @Html.LabelFor(model => model.Email)
+  @Html.EditorFor(model => model.Email)
+
+  @Html.LabelFor(model => model.BreadRate)
+  @Html.EditorFor(model => model.BreadRate)
+
+  @Html.LabelFor(model => model.PastryRate)
+  @Html.EditorFor(model => model.PastryRate)
+
+  <button class="green" type="submit">Save Changes</button>
+}
+
+<a href='@Url.Action("Index")'>
+  <button>Exit without saving</button>
+</a>

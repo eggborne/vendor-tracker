@@ -1,88 +1,61 @@
 using Microsoft.AspNetCore.Mvc;
-using VendorTracker.Models;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using VendorTracker.Models;
 
 namespace VendorTracker.Controllers
 { 
-  public class OrdersController : Controller
-  { 
-    [HttpGet("/vendors/{id}/orders")]
-    public ActionResult Index(int id)
-    {     
-      Vendor chosenVendor = Vendor.Find(id);
-      return View(chosenVendor);
-    }
 
-    [HttpGet("/vendors/{id}/orders/new")]
-    public ActionResult New(int id)
-    {     
-      Vendor chosenVendor = Vendor.Find(id);
-      return View(chosenVendor);
-    }
+  public class OrdersController : Controller {
+    private readonly VendorTrackerContext _db;
 
-    [HttpPost("/vendors/{id}/orders")]
-    public ActionResult Create(
-      int vendorId,
-      string breadAmount,
-      string pastryAmount
-    )
+    public OrdersController(VendorTrackerContext db)
     {
-      if (breadAmount == null) { breadAmount = "12"; }
-      if (pastryAmount == null) { pastryAmount = "6"; }
-      Vendor chosenVendor = Vendor.Find(vendorId);
-      Dictionary<string, int> productAmounts = new Dictionary<string, int>();
-      productAmounts["bread"] = int.Parse(breadAmount);
-      productAmounts["pastry"] = int.Parse(pastryAmount);
-      int totalPrice = chosenVendor.GetTotal(productAmounts);
-      DateTime localDate = DateTime.Now;
-      string dateString = localDate.ToString("MMMM dd, yyyy h:mm:ss tt");
-      Order newOrder = new Order(dateString, breadAmount, pastryAmount, totalPrice);
-      chosenVendor.AddOrder(newOrder);
-      return View("Index", chosenVendor);
+      _db = db;
     }
 
-    [HttpGet("/vendors/{vendorId}/orders/delete")]
-    public ActionResult DeleteAll(int vendorId)
+    public ActionResult Index()
     {
-      Vendor chosenVendor = Vendor.Find(vendorId);
-      chosenVendor.DeleteAllOrders();
-      return View("Index", chosenVendor);
+      List<Order> model = _db.Orders
+                          .Include(order => order.Vendor)
+                          .ToList();
+      return View(model);
     }
 
-    [HttpGet("/vendors/{vendorId}/orders/{orderId}/delete")]
-    public ActionResult Destroy(int vendorId, int orderId)
+    public ActionResult Create()
     {
-      Vendor chosenVendor = Vendor.Find(vendorId);
-      chosenVendor.DeleteOrder(orderId);
-      return View("Index", chosenVendor);
+        return View();
     }
 
-    [HttpGet("/vendors/{vendorId}/orders/{orderId}/edit")]
-    public ActionResult Edit(int vendorId, int orderId)
+    [HttpPost]
+    public ActionResult Create(Order order)
     {
-      Order chosenOrder = Order.Find(orderId);
-      return View(chosenOrder);
+      _db.Orders.Add(order);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
-    [HttpPost("/vendors/{vendorId}/orders/{orderId}/edit")]
-    public ActionResult Edit(
-      int vendorId,
-      int orderId,
-      string breadAmount,
-      string pastryAmount
-    )
+    public ActionResult Edit(int id)
     {
-      Order chosenOrder = Order.Find(orderId);
-      Vendor orderVendor = Vendor.Find(vendorId);
-      chosenOrder.BreadAmount = breadAmount;
-      chosenOrder.PastryAmount = pastryAmount;
-      Dictionary<string, int> productAmounts = new Dictionary<string, int>();
-      productAmounts["bread"] = int.Parse(breadAmount);
-      productAmounts["pastry"] = int.Parse(pastryAmount);
-      int totalPrice = orderVendor.GetTotal(productAmounts);
-      chosenOrder.TotalPrice = totalPrice;
-      return View("Index", orderVendor);
+      Order thisOrder = _db.Orders.FirstOrDefault(order => order.OrderId == id);
+      return View(thisOrder);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Order order)
+    {
+      _db.Orders.Update(order);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Order thisOrder = _db.Orders.FirstOrDefault(order => order.OrderId == id);
+      _db.Orders.Remove(thisOrder);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

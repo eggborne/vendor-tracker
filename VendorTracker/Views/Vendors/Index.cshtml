@@ -4,55 +4,50 @@
 
 @using VendorTracker.Models
 
-<div class="message" id="vendors-message">Current Vendors:</div>
+<h1>Vendors</h1>
 
- @if (Model.Count == 0)
+@if (Model.Count == 0)
+{
+  <p class="empty-list-message">No vendors!</p>
+}
+<ul class="card-list" id="vendor-list">
+  @foreach (Vendor vendor in Model)
   {
-    <p class="empty-list-message">No vendors!</p>
-  }
-  <ul class="card-list" id="vendor-list">
-    @foreach (Vendor vendor in Model)
-    {
-      <li class="card vendor-card" id=@vendor.Id>
-        <div class="card-row-area">
-          <div class="vendor-name">
-            <h3>@vendor.Name</h3>
-          </div>
-          <div class="vendor-description">
-            @vendor.Description
-          </div>
-          <div class="vendor-phone">
-            Phone: @vendor.Phone
-          </div>
-          <div class="vendor-email">
-            Email: @vendor.Email
-          </div>
-          <div class="vendor-order-count">
-            Orders: @vendor.Orders.Count
-          </div>
-        </div>
-        <div class="card-button-area">
-          <a href="/vendors/@vendor.Id/orders">
-            <button>View / Add Orders</button>
+    <li class="card vendor-card" id=@vendor.VendorId>
+      <div class="card-row-area">
+        <div class="vendor-name"> @Html.DisplayFor(model => vendor.Name) </div>
+        <div class="vendor-description"> @Html.DisplayFor(model => vendor.Description) </div>
+        <div class="vendor-phone"> Phone: @Html.DisplayFor(model => vendor.Phone) </div>
+        <div class="vendor-email"> Email: @Html.DisplayFor(model => vendor.Email) </div>
+        <div class="vendor-order-count"> Orders: @vendor.Orders.Count </div>
+      </div>
+      <div class="card-button-area">
+        <a href='@Url.Action("Details", "Orders")'>
+          <button>View / Add Orders</button>
+        </a>
+        <div class="edit-buttons-area">
+          <a href='@Url.Action("Edit", new { id = vendor.VendorId })'>
+            <button class="yellow">Edit</button>
           </a>
-          <div class="edit-buttons-area">
-            <a href="/vendors/@vendor.Id/edit">
-              <button class="yellow">Edit</button>
-            </a>
-            <a href="/vendors/@vendor.Id/delete">
-              <button class="red">Delete</button>
-            </a>
-          </div>
+          <a href='@Url.Action("Delete", new { id = vendor.VendorId })'>
+            <button class="red">Delete</button>
+          </a>
         </div>
-      </li>
-    }
-  </ul>
+      </div>
+    </li>
+  }
+</ul>
 
-<a href="/vendors/new">
+<a href='@Url.Action("Create")'>
   <button class="green">Add New Vendor</button>
 </a>
-@if (Model.Count > 0) {
+
+@* @if (Model.Count > 0) {
   <a href="/vendors/delete">
     <button class="red">Delete All Vendors</button>
   </a>
-}
+} *@
+
+<a href='@Url.Action("Index", "Home")'>
+  <button>Back to Home</button>
+</a>

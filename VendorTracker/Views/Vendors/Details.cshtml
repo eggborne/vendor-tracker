@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@* @model VendorTracker.Models.Order
+@using VendorTracker.Models
+
+<h1>Orders For Html.DisplayFor(model => model.Name)</h1>
+
+@if (@Model.Orders.Count == 0)
+{
+  <h3>No items have been added to this category yet!</h3>
+} 
+else
+{
+  <h3>Items:</h3>
+  <ul>
+    @foreach (Item item in Model.Items)
+    {
+      <li>@Html.ActionLink($"{item.Description}", "Details", "Items", new { id = item.ItemId })</li>
+    }
+  </ul>
+} *@

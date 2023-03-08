@@ -14,8 +14,8 @@ namespace VendorTracker.Tests
         { "bread", 3 }, 
         { "pastry", 2 }
     };
-    Vendor testVendor1 = new Vendor("Rabo Karabekian","Rabo's description", "5035551212", "rabo@rabo.net", testRates);
-    Vendor testVendor2 = new Vendor("Frank's Doughnuts","Frank's description", "5035552323", "frank@dough.nuts", testRates);
+    Vendor testVendor1 = new Vendor("Rabo Karabekian","Rabo's description", "5035551212", "rabo@rabo.net", 3, 2);
+    Vendor testVendor2 = new Vendor("Frank's Doughnuts","Frank's description", "5035552323", "frank@dough.nuts", 3, 2);
 
     Order testOrder1 = new Order("3/03/2023", "12", "6", 48);
     Order testOrder2 = new Order("3/03/2023", "4", "1", 14);
@@ -58,8 +58,8 @@ namespace VendorTracker.Tests
     [TestMethod]
     public void VendorConstructor_CreatesVendorWithRates_Vendor()
     {
-      Assert.AreEqual(3, testVendor1.Rates["bread"]);
-      Assert.AreEqual(2, testVendor1.Rates["pastry"]);
+      Assert.AreEqual(3, testVendor1.BreadRate);
+      Assert.AreEqual(2, testVendor1.PastryRate);
     }
 
     [TestMethod]
@@ -110,14 +110,11 @@ namespace VendorTracker.Tests
     {
       int breadUnitsOrdered = int.Parse(testOrder1.BreadAmount);
       int pastryUnitsOrdered = int.Parse(testOrder1.PastryAmount);
-      int breadRate = testVendor1.Rates["bread"];
-      int pastryRate = testVendor1.Rates["pastry"];
+      int breadRate = testVendor1.BreadRate;
+      int pastryRate = testVendor1.PastryRate;
       int expectedTotal = (breadUnitsOrdered * breadRate) + (pastryUnitsOrdered * pastryRate);
-      Dictionary<string, int> productAmounts = new Dictionary<string, int>();
-      productAmounts["bread"] = breadUnitsOrdered;
-      productAmounts["pastry"] = pastryUnitsOrdered;
       
-      Assert.AreEqual(testVendor1.GetTotal(productAmounts), expectedTotal);
+      Assert.AreEqual(testVendor1.GetTotal(breadUnitsOrdered, pastryUnitsOrdered), expectedTotal);
     }
 
     [TestMethod]

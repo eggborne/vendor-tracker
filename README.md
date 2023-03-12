@@ -18,6 +18,11 @@ A C#/ASP.NET web app that allows a user to create a collection of vendors and as
 3. Run `dotnet watch run` in the command line to start the project in development mode with a watcher.
 4. Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. For more information, [visit the Microsoft documentation on dev-certs](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs).
 
+## Testing
+
+1. Navigate to `/VendorTracker.Tests`.
+2. Run `dotnet test` in the command line.
+
 ## Known Bugs
 
 No known bugs.
